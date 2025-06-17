@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lost Pixel</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo"><a href="index.html">Lost Pixel</a></div>
+            <div class="nav-buttons">
+                <button class="hamburger" id="hamburgerBtn" aria-label="Abrir menu"><i class="fa fa-bars"></i></button>
+                <div class="nav-links" id="navLinks">
+                    <div class="search-container">
+                        <input type="text" id="searchBar" placeholder="Buscar jogos...">
+                        <button id="searchBarBtn" title="Buscar"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </div>
+                    <button onclick="window.location.href='index.html'" title="Página Inicial"><i class="fa-solid fa-house"></i></button>
+                    <button onclick="window.location.href='login.html'" title="Minha Conta"><i class="fa-solid fa-circle-user"></i></button>
+                    <button onclick="window.location.href='aboutus.html'" title="Sobre Nós"><i class="fa-solid fa-building-user"></i></button>
+                    <div id="userMenuContainer" style="display:inline-block; position:relative;"></div>
+                </div>
+            </div>
+            
+        </nav>
+    </header>
+    <div class="hero-section">
+        <div class="container text-center">
+            <h1 class="display-4 mb-4">Bem-vindo ao Lost Pixel</span></h1>
+            <p class="lead">Sua enciclopédia completa de jogos</p>
+        </div>
+    </div>
+    <main>
+        <button id="toggleFiltersBtn"><i class="fa-solid fa-filter"></i> Filtros</button>
+
+<section id="filtersSection" class="filters hidden">
+  <h2>Filtros</h2>
+  <div class="filter-group">
+    <label for="platformFilter">Plataforma:</label>
+    <select id="platformFilter">
+      <option value="">Todas as Plataformas</option>
+    </select>
+  </div>
+  <div class="filter-group">
+    <label for="yearFilter">Ano de Lançamento:</label>
+    <select id="yearFilter">
+      <option value="">Todos os Anos</option>
+    </select>
+  </div>
+  <div class="filter-group">
+    <label for="genreFilter">Gênero:</label>
+    <select id="genreFilter">
+      <option value="">Todos os Gêneros</option>
+    </select>
+  </div>
+  <button id="filterBtn" style="margin-top:1rem;">Filtrar</button>
+</section>
+
+<section class="games-grid" id="gamesGrid">
+</section>
+        <button id="addGameButton" class="floating-button">+</button>
+</main>
+    <div id="gameModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle">Adicionar Novo Jogo</h2>
+            <form id="gameForm">
+                <div id="gameError" style="color: #d32f2f; text-align: center; margin-bottom: 1rem;"></div>
+                <div class="form-group">
+                    <label for="title">Título:</label>
+                    <input type="text" id="title" name="title" required>
+                </div>
+                <div class="form-group">
+                    <label for="platform">Plataforma:</label>
+                    <input type="text" id="platform" name="platform" required>
+                </div>
+                <div class="form-group">
+                    <label for="releaseYear">Ano de Lançamento:</label>
+                    <input type="number" id="releaseYear" name="releaseYear" required>
+                </div>
+                <div class="form-group">
+                    <label for="genre">Gênero:</label>
+                    <input type="text" id="genre" name="genre" required>
+                </div>
+                <div class="form-group">
+                    <label for="developer">Desenvolvedor:</label>
+                    <input type="text" id="developer" name="developer" required>
+                </div>
+                <div class="form-group">
+                    <label for="publisher">Publicadora:</label>
+                    <input type="text" id="publisher" name="publisher" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">Descrição:</label>
+                    <textarea id="description" name="description" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="rating">Nota (0-10):</label>
+                    <input type="number" id="rating" name="rating" min="0" max="10" step="0.1" required>
+                </div>
+                <div class="form-group">
+                    <label for="imageUrl">URL da Imagem:</label>
+                    <input type="url" id="imageUrl" name="imageUrl">
+                </div>
+                <br><br>
+                
+                <button type="submit" id="submitButton">Salvar Jogo</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Lost Pixel</h3>
+                <p>Sua enciclopédia completa de jogos</p>
+                <p>Fundada em 2025</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contato</h3>
+                <p><i class="fa-solid fa-envelope"></i>  contato@lostpixel.com</p>
+                <p><i class="fa-solid fa-phone"></i>  (47) 9218-1314</p>
+                <p><i class="fa-solid fa-location-dot"></i>  Blumenau, SC - Brasil</p>
+            </div>
+            <div class="footer-section">
+                <h3>Redes Sociais</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Lost Pixel. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+    
+</body>
+</html> 

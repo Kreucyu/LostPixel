@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Jogo - Lost Pixel</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+</head>
+<body style="background-image: url('images/imagemsite.png'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+    <header>
+        <nav>
+            <div class="logo"><a href="index.html">Lost Pixel</a></div>
+            <div class="nav-buttons">
+                <button class="hamburger" id="hamburgerBtn" aria-label="Abrir menu"><i class="fa fa-bars"></i></button>
+                <div class="nav-links" id="navLinks">
+                    <div class="search-container">
+                        <input type="text" id="searchBar" placeholder="Buscar jogos...">
+                        <button id="searchBarBtn" title="Buscar"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </div>
+                    <button onclick="window.location.href='index.html'" title="Página Inicial"><i class="fa-solid fa-house"></i></button>
+                    <button onclick="window.location.href='login.html'" title="Minha Conta"><i class="fa-solid fa-circle-user"></i></button>
+                    <button onclick="window.location.href='aboutus.html'" title="Sobre Nós"><i class="fa-solid fa-building-user"></i></button>
+                    <div id="userMenuContainer" style="display:inline-block; position:relative;"></div>
+                </div>
+            </div>
+            
+        </nav>
+    </header>
+    <main class="gameinfo-article">
+        <div id="gameInfoContent">Carregando...</div>
+    </main>
+    <script>
+    function getGameIdFromUrl() {
+        const params = new URLSearchParams(window.location.search);
+        return params.get('id');
+    }
+    async function loadGameInfo() {
+        const gameId = getGameIdFromUrl();
+        if (!gameId) return;
+        try {
+            const res = await fetch(`http://localhost:3000/api/games/${gameId}`);
+            if (!res.ok) throw new Error('Jogo não encontrado');
+            const game = await res.json();
+            document.getElementById('gameInfoContent').innerHTML = `
+            <div class="jogo-info">
+                <div class="imagem-jogo"><img src="${game.imageUrl || 'https://via.placeholder.com/300x200?text=Sem+Imagem'}" alt="${game.title}" class="cover"></div>
+                <div class="textos">
+                <h1 class="titulo-jogo">${game.title}</h1>
+                <div class="gameinfo-meta">
+                    <div><b>Plataforma:</b> ${game.platform}</div>
+                    <div><b>Lançamento:</b> ${game.releaseYear}</div>
+                    <div><b>Gênero:</b> ${game.genre}</div>
+                    <div><b>Desenvolvedor:</b> ${game.developer}</div>
+                    <div><b>Publicadora:</b> ${game.publisher}</div>
+                </div>
+                <div class="gameinfo-rating">Nota: ${game.rating || '-'}</div>
+                </div>
+                <br>
+            </div>
+                <div class="descricao-jogo"><div class="gameinfo-desc">${game.description || ''}</div></div>
+            
+            `;
+        } catch (err) {
+            document.getElementById('gameInfoContent').innerHTML = 'Jogo não encontrado.';
+        }
+    }
+    document.addEventListener('DOMContentLoaded', loadGameInfo);
+    document.addEventListener('DOMContentLoaded', async () => {
+        if (typeof fetchUserInfo === 'function') {
+            await fetchUserInfo();
+        }
+        if (typeof renderUserMenu === 'function') {
+            renderUserMenu();
+        }
+    });
+    </script>
+
+<footer class="site-footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>Lost Pixel</h3>
+            <p>Sua enciclopédia completa de jogos</p>
+            <p>Fundada em 2025</p>
+        </div>
+        <div class="footer-section">
+            <h3>Contato</h3>
+            <p><i class="fa-solid fa-envelope"></i>  contato@lostpixel.com</p>
+            <p><i class="fa-solid fa-phone"></i>  (47) 9218-1314</p>
+            <p><i class="fa-solid fa-location-dot"></i>  Blumenau, SC - Brasil</p>
+        </div>
+        <div class="footer-section">
+            <h3>Redes Sociais</h3>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 Lost Pixel. Todos os direitos reservados.</p>
+    </div>
+</footer>
+</body>
+</html>
